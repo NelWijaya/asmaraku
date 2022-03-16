@@ -7,7 +7,7 @@ var cron = require('node-cron')
 
 // Untuk Get data
 exports.findAll = (req, res) => {
-    cron.schedule('* * * * * *', function() {
+    
         Post.find()
             .then((result) => {
                 res.send(result)
@@ -16,50 +16,11 @@ exports.findAll = (req, res) => {
                     message: err.message || "Some error while retreieving posts."
                 })
             });
-
-
-        request({
-            url: "https://data.covid19.go.id/public/api/update.json",
-            json: true
-        }, (error, response, body) => {
-            if (error) {
-                console.log(error)
-            } else {
-                var data = (body)
-                post = {
-                    jumlah_positif: data.update.penambahan.jumlah_positif,
-                    jumlah_meninggal: data.update.penambahan.jumlah_meninggal,
-                    jumlah_sembuh: data.update.penambahan.jumlah_sembuh,
-                    jumlah_dirawat: data.update.penambahan.jumlah_dirawat,
-                }
-
-                const id = '6231855867c58d847396e2cc';
-
-                Post.findByIdAndUpdate(id, post)
-                    .then((result) => {
-                        if (!result) {
-                            res.status(404).send({
-                                message: "Post not found"
-                            })
-                        }
-
-                        res.send({
-                            message: "Post was updated"
-                        })
-
-                        console.log("Post data updated");
-                    }).catch((err) => {
-                        res.status(409).send({
-                            message: err.message || "Some error while update post."
-                        })
-                    })
-            }
-        })
-
-
-    });
-
+   
 }
+
+
+// Dibawah untuk latihan
 
 // Membuat (Simpan) data covid dalam MongoDB
 exports.create = (req, res) => {
@@ -89,6 +50,8 @@ exports.create = (req, res) => {
                 })
         }
     })
+
+
 }
 
 // Membaca 1 data
