@@ -1,8 +1,9 @@
 module.exports = (mongoose) => {
     const schema = mongoose.Schema({
-        title: String,
-        body: String,
-        published: Boolean
+        jumlah_positif: Number,
+        jumlah_meninggal: Number,
+        jumlah_sembuh: Number,
+        jumlah_dirawat: Number,
     }, {
         timestamps: true
     })

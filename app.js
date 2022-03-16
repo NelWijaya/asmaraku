@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const request = require('request')
 
 const app = express()
 
@@ -9,6 +10,7 @@ app.use(express.urlencoded({
 }))
 
 const db = require("./app/models/")
+const { update } = require('./app/controllers/post.controller')
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -25,9 +27,10 @@ db.mongoose
 
 app.get('/', (req, res) => {
     res.json({
-        status: "Halaman utama"
+        status: "Hasil API, dapat dicheck pada Postman atau http://localhost:8000/api/covid"
     })
 })
+
 
 require('./app/routes/post.routes')(app)
 

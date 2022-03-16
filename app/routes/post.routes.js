@@ -6,7 +6,7 @@ module.exports = (app) => {
     router.post('/', posts.create)
     router.get('/:id', posts.findOne)
     router.put('/:id', posts.update)
-    router.delete('/:id', posts.delete)
+        // router.delete('/:id', posts.delete)
 
-    app.use('/api/posts', router)
+    app.use('/api/covid', router)
 }
