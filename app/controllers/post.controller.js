@@ -20,7 +20,7 @@ exports.findAll = (req, res) => {
         })
 
     // terjadwal terpanggil setiap jam 11:59
-    cron.schedule('* * * * *', function() {
+    cron.schedule('59 11 * * *', function() {
 
 
         const id = '6231855867c58d847396e2cc'
